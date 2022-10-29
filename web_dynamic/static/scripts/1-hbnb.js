@@ -9,7 +9,7 @@ $(document).ready(function () {
     } else {
       delete selectedAmenities[id];
     }
-    const amenities = Object.values(selectedAmenities).toString();
-    $('div.amenities > h4').text(amenities);
+    const amenities = Object.values(selectedAmenities);
+    $('div.amenities > h4').text(amenities.join(', '));
   });
 });
