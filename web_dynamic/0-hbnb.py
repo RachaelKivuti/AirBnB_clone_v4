@@ -22,7 +22,7 @@ def close_db(error):
 @app.route('/0-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
-    cache_id = uuid4()
+    cache_id = str(uuid4())
     states = storage.all(State).values()
     states = sorted(states, key=lambda k: k.name)
     st_ct = []
