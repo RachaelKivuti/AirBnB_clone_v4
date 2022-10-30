@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const hostname = window.location.hostname + ':5001';
   const AmenitiesChecked = {};
   $(document).on('change', "input[type='checkbox']", function () {
     if (this.checked) {
@@ -34,7 +35,7 @@ $(document).ready(function () {
   $.ajax({
     type: 'POST',
     data: JSON.stringify(AmenitiesChecked),
-    url: 'http://172.23.179.134:5001/api/v1/places_search/',
+    url: 'http://' + hostname + '/api/v1/places_search/',
     contentType: 'application/json',
     success: data => {
       for (const place of data) {
@@ -81,7 +82,7 @@ $(document).ready(function () {
     $.ajax({
       type: 'POST',
       data: JSON.stringify({ amenities: Object.keys(AmenitiesChecked) }),
-      url: 'http://172.23.179.134:5001/api/v1/places_search/',
+      url: 'http://' + hostname + '/api/v1/places_search/',
       dataType: 'json',
       contentType: 'application/json',
       success: data => {

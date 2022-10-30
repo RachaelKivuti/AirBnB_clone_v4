@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const hostname = window.location.hostname + ':5001';
   const AmenitiesChecked = {};
   $(document).on('change', "input[type='checkbox']", function () {
     if (this.checked) {
@@ -15,7 +16,7 @@ $(document).ready(function () {
     console.log(AmenitiesChecked);
   });
 
-  const url = 'http://172.23.179.134:5001/api/v1/status';
+  const url = 'http://' + hostname + '/api/v1/status';
   $.getJSON(url, (data) => {
     if (data.status === 'OK') {
       $('DIV#api_status').addClass('available');

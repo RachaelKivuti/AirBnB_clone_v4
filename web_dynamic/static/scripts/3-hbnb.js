@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const hostname = window.location.hostname + ':5001';
   const AmenitiesChecked = {};
   $(document).on('change', "input[type='checkbox']", function () {
     if (this.checked) {
@@ -15,7 +16,7 @@ $(document).ready(function () {
     console.log(AmenitiesChecked);
   });
 
-  const url = 'http://0.0.0.0:5001/api/v1/status/';
+  const url = 'http://' + hostname + '/api/v1/status/';
   $.getJSON(url, (data) => {
     if (data.status === 'OK') {
       $('DIV#api_status').addClass('available');
@@ -24,7 +25,7 @@ $(document).ready(function () {
     }
   });
   const users = {};
-  $.getJSON('http://172.23.179.134:5001/api/v1/users', (data) => {
+  $.getJSON('http://' + hostname + '/api/v1/users', (data) => {
     for (const usr of data) {
       users[usr.id] = usr.first_name + ' ' + usr.last_name;
       console.log(users);
@@ -34,7 +35,7 @@ $(document).ready(function () {
   $.ajax({
     type: 'POST',
     data: JSON.stringify({}),
-    url: 'http://172.23.179.134:5001/api/v1/places_search/',
+    url: 'http://' + hostname + '/api/v1/places_search/',
     contentType: 'application/json',
     success: data => {
       for (const place of data) {

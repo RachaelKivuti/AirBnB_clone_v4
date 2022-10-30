@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const hostname = window.location.hostname + ':5001';
   const AmenitiesChecked = {};
   const StatesCheked = {};
   const CitiesChecked = {};
@@ -79,7 +80,7 @@ $(document).ready(function () {
     if (n === 0) {
       const l = $(this).attr('data-state');
       $('.locations > .popover > li > input:checkbox[data-id^="' + l + '"]').prop('checked', true);
-      $.getJSON('http://127.0.0.1:5001/api/v1/states/' + $(this).attr('data-state'), (state) => {
+      $.getJSON('http://' + hostname + '/api/v1/states/' + $(this).attr('data-state'), (state) => {
         StatesCheked[state.id] = state.name;
         CheckedLoactions[state.id] = state.name;
       });
@@ -92,7 +93,7 @@ $(document).ready(function () {
     console.log(StatesCheked);
   });
 
-  const url = 'http://127.0.0.1:5001/api/v1/status/';
+  const url = 'http://' + hostname + '/api/v1/status/';
   $.getJSON(url, (data) => {
     if (data.status === 'OK') {
       $('DIV#api_status').addClass('available');
@@ -101,13 +102,13 @@ $(document).ready(function () {
     }
   });
   const users = {};
-  $.getJSON('http://127.0.0.1:5001/api/v1/users', (data) => {
+  $.getJSON('http://' + hostname+ '/api/v1/users', (data) => {
     for (const usr of data) {
       users[usr.id] = usr.first_name + ' ' + usr.last_name;
     }
   });
   const amenities = {};
-  $.getJSON('http://127.0.0.1:5001/api/v1/amenities', (data) => {
+  $.getJSON('http://' + hostname + '/api/v1/amenities', (data) => {
     for (const amenity of data) {
       amenities[amenity.id] = amenity.name;
     }
@@ -117,7 +118,7 @@ $(document).ready(function () {
   $.ajax({
     type: 'POST',
     data: JSON.stringify({}),
-    url: 'http://127.0.0.1:5001/api/v1/places_search/',
+    url: 'http://' + hostname + '/api/v1/places_search/',
     contentType: 'application/json',
     success: data => {
       for (const place of data) {
@@ -161,7 +162,7 @@ $(document).ready(function () {
         $('section.places').append(template);
       }
       $('.reviewSpan').click(function (event) {
-        $.ajax('http://127.0.0.1:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
+        $.ajax('http://' + hostname + '/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
           const FirstPlace = data[0];
           //            $('span').toggle('reviewSpan hideReview');\
           if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === false) {
@@ -231,7 +232,7 @@ $(document).ready(function () {
           $('section.places').append(template);
         }
         $('.reviewSpan').click(function (event) {
-          $.ajax('http://127.0.0.1:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
+          $.ajax('http://' + hostname + '/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
             const FirstPlace = data[0];
             //            $('span').toggle('reviewSpan hideReview');\
             if ($("span[data-id='" + FirstPlace.place_id + "']").hasClass('hideReview') === false) {
