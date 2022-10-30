@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  const selectedAmenities = {};
+  const amenity = $('div.amenities input[type="checkbox"]');
+  amenity.change(function () {
+    const id = $(this).attr('data-id');
+    const name = $(this).attr('data-name');
+    if ($(this).is(':checked')) {
+      selectedAmenities[id] = name;
+    } else {
+      delete selectedAmenities[id];
+    }
+    const amenities = Object.values(selectedAmenities);
+    $('div.amenities > h4').text(amenities.join(', '));
+  });
   const url = 'http://0.0.0.0:5001/api/v1/status/';
   $.ajax({
     url: url,
