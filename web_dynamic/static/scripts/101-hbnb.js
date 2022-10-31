@@ -69,18 +69,6 @@ $(document).ready(function () {
     };
     displayPlaces(req);
   });
-
-  $('span.span').on('click', function () {
-    console.log('yes');
-    console.log($(this).text());
-    if ($(this).text() === "show") {
-      $(this).text('hide');
-      $('div.reviews ul').slideDown();
-    } else {
-      $(this).text('show');
-      $('div.reviews ul').slideUp('fast');
-    }
-  });
 });
 
 async function displayPlaces (req = {}) {
@@ -183,7 +171,6 @@ function populateReviews (place) {
       }
     }
     divReviews.append(h2);
-    /*
     const ul = $('<ul></ul>');
     for (const review of reviews) {
       console.log(review.created_at);
@@ -199,7 +186,6 @@ function populateReviews (place) {
         divReviews.append(ul);
       });
     }
-    */
   });
   return divReviews;
 }

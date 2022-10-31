@@ -102,11 +102,11 @@
 .reviews {
   margin-top: 40px;
 }
-.reviews h2 span {
+.reviews span {
   font-size: 12px;
   padding-left: 70%;
 }
-.reviews h2 span:hover {
+.reviews span:hover {
   cursor: pointer;
 }
 .places .reviews h2 {
@@ -127,7 +127,6 @@
 .reviews ul {
   list-style-type: none;
   padding: 0;
-  display: none;
 }
 .reviews ul li {
   margin-left: 0px;
