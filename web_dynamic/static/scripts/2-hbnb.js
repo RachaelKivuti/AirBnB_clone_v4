@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const hostname = window.location.hostname;
   const selectedAmenities = {};
   const amenity = $('div.amenities input[type="checkbox"]');
   amenity.change(function () {
@@ -12,7 +13,7 @@ $(document).ready(function () {
     const amenities = Object.values(selectedAmenities);
     $('div.amenities > h4').text(amenities.join(', '));
   });
-  const url = 'http://0.0.0.0:5001/api/v1/status/';
+  const url = 'http://' + hostname + '/api/v1/status/';
   $.ajax({
     url: url,
     type: 'GET',
